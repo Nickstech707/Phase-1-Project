@@ -70,7 +70,7 @@ async function getRemoteJobs() {
   document.getElementById("results").style.display = "block";
 }
 // Event listener for the "Cancel" button
-document.getElementById("cancelButton").addEventListener("click", function () {
+document.getElementById("cancelButton").addEventListener("change", function () {
   document.getElementById("overlay").style.display = "none";
   document.getElementById("results").style.display = "none";
 });
