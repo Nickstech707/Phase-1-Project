@@ -30,7 +30,10 @@ requiredEnvVars.forEach(varName => {
 const app = express();
 
 // Security middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false
+}));
+
 app.use(cors({
   origin: process.env.CLIENT_URL,
  
@@ -40,13 +43,13 @@ app.use(cors({
 }));
 
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, 
-  max: 100, 
-});
-app.use(limiter);
+// const limiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, 
+//   max: 100, 
+// });
+// app.use(limiter);
 
-app.use(express.json({ limit: '1kb' }));
+// app.use(express.json({ limit: '1kb' }));
 
 // Initialize Supabase client
 const supabase = createClient(
@@ -492,15 +495,15 @@ app.use((req, res) => {
 
 // Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+// app.listen(PORT, () => {
   
   
-  // Log startup information
-  console.log('Environment:', process.env.NODE_ENV || 'development');
-  console.log('CORS origin:', process.env.CLIENT_URL);
-  console.log('Email service configured:', !!process.env.REACT_APP_EMAIL_HOST);
-  console.log('Supabase configured:', !!process.env.REACT_APP_SUPABASE_URL);
-});
+//   // Log startup information
+//   console.log('Environment:', process.env.NODE_ENV || 'development');
+//   console.log('CORS origin:', process.env.CLIENT_URL);
+//   console.log('Email service configured:', !!process.env.REACT_APP_EMAIL_HOST);
+//   console.log('Supabase configured:', !!process.env.REACT_APP_SUPABASE_URL);
+// });
 
 // Graceful shutdown handler
 process.on('SIGTERM', () => {
