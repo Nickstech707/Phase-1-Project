@@ -40,7 +40,7 @@ const FindJobs = () => {
       }
       return false;
     } catch (error) {
-      console.error('Cache load failed:', error);
+      
       return false;
     }
   }, []);
@@ -81,7 +81,7 @@ const FindJobs = () => {
       await saveDataInChunks(jobsData);
       setLastFetchTime(Date.now());
     } catch (error) {
-      console.error('Cache save failed:', error);
+      
     }
   }, []);
 
@@ -167,7 +167,6 @@ const FindJobs = () => {
     <div className="container mx-auto px-4 py-10">
       <div className="max-w-screen-xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Find Remote Jobs</h1>
           <div className="flex items-center gap-4">
             <button
               onClick={() => fetchJobs(true)}

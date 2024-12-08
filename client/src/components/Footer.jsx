@@ -48,7 +48,7 @@ const Footer = () => {
               <li><Link to="/help" className="text-emerald-100/80 hover:text-white transition-colors text-sm">Help Center</Link></li>
               <li><Link to="/privacy" className="text-emerald-100/80 hover:text-white transition-colors text-sm">Privacy Policy</Link></li>
               <li><Link to="/terms" className="text-emerald-100/80 hover:text-white transition-colors text-sm">Terms of Service</Link></li>
-              <li><a href="mailto:contact@remohive.com" className="text-emerald-100/80 hover:text-white transition-colors inline-flex items-center text-sm">
+              <li><a href="mailto:test@gmail.com" className="text-emerald-100/80 hover:text-white transition-colors inline-flex items-center text-sm">
                 <Mail className="mr-2 h-4 w-4" /> Contact Us
               </a></li>
             </ul>

@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import axios from 'axios';
 
-function SubscribeForm({ onNewJobs }) {
+function SubscribeForm({ newJobs = [] }) {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [notification, setNotification] = useState('');
@@ -26,24 +25,28 @@ function SubscribeForm({ onNewJobs }) {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('/api/subscribe', {
-        email,
-        subscriptionDate: new Date(),
-        status: 'active'
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/subscribe`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          email: email.toLowerCase(),
+          newJobs 
+        }),
       });
 
-      setNotification('Successfully subscribed to job alerts!');
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Error subscribing to alerts');
+      }
+
+      setNotification('You have Successfully subscribed to job alerts. You will get notified when new jobs are posted');
       setIsSubscribed(true);
       setEmail('');
-      onNewJobs();
       setTimeout(() => setNotification(''), 3000);
     } catch (error) {
-      if (error.response?.status === 409) {
-        setNotification('This email is already subscribed');
-      } else {
-        setNotification(error.response?.data?.error || 'Error subscribing to alerts');
-      }
-      console.error('Subscription error:', error);
+      
+      setNotification(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -70,7 +73,7 @@ function SubscribeForm({ onNewJobs }) {
   `;
 
   return (
-    <div className="w-full min-h-[200px] flex items-center justify-center bg-gradient-to-b from-emerald-900/20 to-transparent rounded-[15px]" >
+    <div className="w-full min-h-[200px] flex items-center justify-center bg-gradient-to-b from-emerald-900/20 to-transparent rounded-[15px]">
       <div className="w-full max-w-md mx-auto px-6">
         <div className="text-center mb-6">
           <p className="text-base text-emerald-200/80">

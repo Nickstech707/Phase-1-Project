@@ -70,7 +70,7 @@ function Companies() {
         setError(null);
       } catch (err) {
         setError('Error loading companies. Please try again.');
-        console.error('Error loading companies:', err);
+      
       } finally {
         setLoading(false);
       }

@@ -24,7 +24,7 @@ function Home() {
       setJobs(matchingJobs);
       setShowResults(true);
     } catch (error) {
-      console.error('Error fetching remote jobs:', error);
+      // console.error('Error fetching remote jobs:', error);
     } finally {
       setIsLoading(false);
     }
@@ -81,20 +81,20 @@ function Home() {
             
             <SearchBox onSearch={handleSearch} />
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <button 
-                onClick={handleBrowseJobs}
-                className="px-8 py-3 bg-emerald-600 text-white rounded-full hover:bg-emerald-700 transition-colors duration-300 transform hover:scale-105"
-              >
-                Browse Jobs
-              </button>
-              <button 
-                onClick={handleViewCompanies}
-                className="px-8 py-3 bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 rounded-full border-2 border-emerald-600 dark:border-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-300 transform hover:scale-105"
-              >
-                View Companies
-              </button>
-            </div>
+            <div className="flex justify-center mt-8 space-x-4">
+  <button 
+    onClick={handleBrowseJobs}
+    className="px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-emerald-600 text-white rounded-full hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105"
+  >
+    Browse Jobs
+  </button>
+  <button 
+    onClick={handleViewCompanies}
+    className="px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 rounded-full border-2 border-emerald-600 dark:border-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 transition-all duration-300 transform hover:scale-105"
+  >
+    View Companies
+  </button>
+</div>
           </div>
         </div>
       </div>
@@ -188,92 +188,3 @@ function Home() {
 }
 
 export default Home;
-
-
-// import { useState } from 'react';
-// import { ReactTyped } from 'react-typed';
-// import { Link, useNavigate } from 'react-router-dom';
-// import JobCard from '../components/JobCard';
-// import SubscribeForm from '../components/SubscribeForm';
-// import SearchBox from '../components/SearchBox';
-
-// function Home() {
-//   const [jobs, setJobs] = useState([]);
-//   const [showResults, setShowResults] = useState(false);
-//   const [isLoading, setIsLoading] = useState(false);
-//   const navigate = useNavigate();
-
-//   const handleSearch = async (searchQuery) => {
-//     if (!searchQuery.trim()) return;
-
-//     setIsLoading(true);
-//     try {
-//       const response = await fetch('https://remotive.io/api/remote-jobs');
-//       const data = await response.json();
-//       const matchingJobs = data.jobs.filter((job) =>
-//         job.title.toLowerCase().includes(searchQuery.toLowerCase())
-//       );
-//       setJobs(matchingJobs);
-//       setShowResults(true);
-//     } catch (error) {
-//       console.error('Error fetching remote jobs:', error);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-
-//   const handleBrowseJobs = () => {
-//     navigate('/jobs');
-//   };
-
-//   const handleViewCompanies = () => {
-//     navigate('/companies');
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-//       {/* Hero Section */}
-//       <div className="relative overflow-hidden">
-//         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-//           <div className="text-center">
-//             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-//               <ReactTyped
-//                 strings={[
-//                   'Find Your Perfect ',
-//                   '<span class="text-emerald-600 dark:text-emerald-400">Remote Job</span>',
-//                 ]}
-//                 typeSpeed={50}
-//                 backSpeed={30}
-//                 loop
-//               />
-//             </h1>
-//             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-//               Discover thousands of remote opportunities from top companies worldwide.
-//               Your next career move is just a click away.
-//             </p>
-
-//             <SearchBox onSearch={handleSearch} />
-
-//             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-//               <button
-//                 onClick={handleBrowseJobs}
-//                 className="px-8 py-3 bg-emerald-600 text-white rounded-full hover:bg-emerald-700 transition-colors duration-300 transform hover:scale-105"
-//               >
-//                 Browse Jobs
-//               </button>
-//               <button
-//                 onClick={handleViewCompanies}
-//                 className="px-8 py-3 bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 rounded-full border-2 border-emerald-600 dark:border-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-300 transform hover:scale-105"
-//               >
-//                 View Companies
-//               </button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Home;
