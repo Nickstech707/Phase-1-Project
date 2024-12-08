@@ -495,15 +495,15 @@ app.use((req, res) => {
 
 // Start server
 const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
+app.listen(PORT, () => {
   
   
-//   // Log startup information
-//   console.log('Environment:', process.env.NODE_ENV || 'development');
-//   console.log('CORS origin:', process.env.CLIENT_URL);
-//   console.log('Email service configured:', !!process.env.REACT_APP_EMAIL_HOST);
-//   console.log('Supabase configured:', !!process.env.REACT_APP_SUPABASE_URL);
-// });
+  // Log startup information
+  console.log('Environment:', process.env.NODE_ENV || 'development');
+  console.log('CORS origin:', process.env.CLIENT_URL);
+  console.log('Email service configured:', !!process.env.REACT_APP_EMAIL_HOST);
+  console.log('Supabase configured:', !!process.env.REACT_APP_SUPABASE_URL);
+});
 
 // Graceful shutdown handler
 process.on('SIGTERM', () => {
